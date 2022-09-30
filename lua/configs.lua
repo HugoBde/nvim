@@ -1,0 +1,7 @@
+require("configs.nvim-treesitter")
+require("configs.lspconfig")
+require("configs.coq")
+require("configs.gruvbox")
+require("configs.indent-line")
+require("configs.discord")
+require("configs.nvim-tree")

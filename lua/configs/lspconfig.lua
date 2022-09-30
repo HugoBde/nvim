@@ -1,0 +1,11 @@
+local lspconfig = require("lspconfig")
+local coq       = require("coq")
+
+lspconfig.bashls.setup(coq.lsp_ensure_capabilities())
+lspconfig.clangd.setup(coq.lsp_ensure_capabilities())
+lspconfig.cmake.setup(coq.lsp_ensure_capabilities())
+lspconfig.cssls.setup(coq.lsp_ensure_capabilities())
+lspconfig.eslint.setup(coq.lsp_ensure_capabilities())
+lspconfig.gopls.setup(coq.lsp_ensure_capabilities())
+lspconfig.html.setup(coq.lsp_ensure_capabilities())
+lspconfig.rust_analyzer.setup(coq.lsp_ensure_capabilities())
