@@ -27,4 +27,15 @@ return require("packer").startup(function(use)
 
     -- File Explorer
     use({'kyazdani42/nvim-tree.lua', requires = {'kyazdani42/nvim-web-devicons'}})
+
+    -- to add:
+    -- autoformatting
+    -- maybe Shade.nvim
+    -- a status line
+    -- a tab line
+    -- a greeter
+    -- add keybinds to toggle/focus the file tree
+    -- maybe better terminal integration
+    -- quickfix
+    --
 end)
