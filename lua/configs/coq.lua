@@ -1,5 +1,4 @@
 vim.g.coq_settings = {
-    auto_start = true,
     display = {
         ghost_text = {
             context = {" < ", " > "}
@@ -25,4 +24,4 @@ vim.g.coq_settings = {
     }
 }
 
-require("coq")
+vim.cmd("COQnow -s")

@@ -5,11 +5,16 @@ require("nvim-tree").setup({
         special_files = {},
         indent_markers = {
             enable = true,
-            inline_arrows = false,
+            icons = {
+               item = "├" 
+            }
         },
         icons = {
             webdev_colors = false,
-            git_placement = "after"
+            git_placement = "after",
+            show = {
+                folder_arrow = false
+            }
         }
     },
     filters = {

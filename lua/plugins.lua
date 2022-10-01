@@ -26,12 +26,16 @@ return require("packer").startup(function(use)
     use("andweeb/presence.nvim")
 
     -- File Explorer
-    use({'kyazdani42/nvim-tree.lua', requires = {'kyazdani42/nvim-web-devicons'}})
+    use({"kyazdani42/nvim-tree.lua", requires = {"kyazdani42/nvim-web-devicons"}})
+
+    use({"lewis6991/gitsigns.nvim", config = function() require("gitsigns").setup() end})
 
     -- to add:
     -- autoformatting
-    -- maybe Shade.nvim
+
     -- a status line
+    use("feline-nvim/feline.nvim")
+
     -- a tab line
     -- a greeter
     -- add keybinds to toggle/focus the file tree

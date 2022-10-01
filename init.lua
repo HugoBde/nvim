@@ -9,7 +9,7 @@ vim.opt.smarttab       = true
 vim.opt.scrolloff      = 5
 vim.opt.cursorline     = true
 
-vim.opt.guifont = "Tamzen Nerd Font"
+vim.opt.guifont = "Iosevka Nerd Font"
 
 -- Load plugins
 require("plugins")
