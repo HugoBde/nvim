@@ -21,11 +21,11 @@ local vi_mode_colors = {
 	NORMAL = "green",
 	OP = "green",
 	INSERT = "yellow",
-	VISUAL = "purple",
-	LINES = "orange",
-	BLOCK = "dark_red",
+	VISUAL = "oceanblue",
+	LINES = "skyblue",
+	BLOCK = "cyan",
 	REPLACE = "red",
-	COMMAND = "aqua",
+	COMMAND = "violet",
 }
 
 local c = {
@@ -64,8 +64,8 @@ local c = {
 			fg = "green",
 			bg = "bg",
 		},
-		left_sep = "vertical_bar_thin",
-		-- right_sep = "block",
+		left_sep = "block",
+		right_sep = "block",
 	},
 	gitDiffRemoved = {
 		provider = "git_diff_removed",
@@ -73,8 +73,8 @@ local c = {
 			fg = "red",
 			bg = "bg",
 		},
-		-- left_sep = "block",
-		-- right_sep = "block",
+		left_sep = "block",
+		right_sep = "block",
 	},
 	gitDiffChanged = {
 		provider = "git_diff_changed",
@@ -82,8 +82,8 @@ local c = {
 			fg = "yellow",
 			bg = "bg",
 		},
-		-- left_sep = "block",
-		-- right_sep = "right_filled",
+		left_sep = "block",
+		right_sep = "block",
 	},
 	separator = {
 		provider = "",
@@ -205,19 +205,18 @@ local left = {
 	c.gitDiffAdded,
     c.gitDiffRemoved,
 	c.gitDiffChanged,
-	c.separator,
-}
-
-local middle = {
-	c.fileinfo,
+	-- c.separator,
 	c.diagnostic_errors,
 	c.diagnostic_warnings,
 	c.diagnostic_info,
 	c.diagnostic_hints,
 }
 
+local middle = {
+	c.fileinfo,
+}
+
 local right = {
-	c.lsp_client_names,
 	c.file_type,
 	c.file_encoding,
 	c.position,
@@ -234,12 +233,25 @@ local components = {
 	inactive = {
 		left,
 		middle,
-		right,
+        right,
 	},
 }
 
 feline.setup({
     components = components,
     theme = gruvbox,
-    vi_mode_colors = vi_mode_colors
+    vi_mode_colors = vi_mode_colors,
+    disable = {
+        filetypes = {
+            '^NvimTree$',
+            '^packer$',
+            '^startify$',
+            '^fugitive$',
+            '^fugitiveblame$',
+            '^qf$',
+        },
+        buftypes = {
+            '^terminal$',
+        },
+    },
 })
