@@ -1,18 +1,16 @@
-vim.opt.number         = true
-vim.opt.relativenumber = true
--- vim.opt.termguicolors  = true
-vim.opt.wrap           = false
-vim.opt.tabstop        = 4
-vim.opt.shiftwidth     = 4
-vim.opt.expandtab      = true
-vim.opt.smarttab       = true
-vim.opt.scrolloff      = 5
-vim.opt.cursorline     = true
+local ensure_packer = function()
+    local fn = vim.fn
+    local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+    if fn.empty(fn.glob(install_path)) > 0 then
+        fn.system({ "git", "clone", "--depth", "1", "https://github.com/webthomason/packer.nvim", install_path })
+        vim.cmd [[packadd packer.nvim]]
+        return true
+    end
+    return false
+end
 
-vim.opt.guifont = "Iosevka Nerd Font"
+local packer_bootstrap = ensure_packer()
 
--- Load plugins
 require("plugins")
-
--- Load personal configs
 require("configs")
+require("remaps")
