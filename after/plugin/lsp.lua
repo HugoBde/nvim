@@ -34,7 +34,7 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
     ["<CR>"] = cmp.mapping({
         i = function(fallback)
             if cmp.visible() and cmp.get_active_entry() then
-                cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+                cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })
             else
                 fallback()
             end
@@ -46,7 +46,8 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
 })
 
 cmp.setup({
-    mapping = cmp_mappings
+    mapping = cmp_mappings,
+    preselect = cmp.PreselectMode.None
 })
 
 lsp.on_attach(function(client, bufnr)
