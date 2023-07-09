@@ -42,6 +42,8 @@ return {
         }
     },
 
+    "lewis6991/gitsigns.nvim",
+
     {
         "numToStr/Comment.nvim",
         config = function()

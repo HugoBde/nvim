@@ -20,3 +20,6 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 -- Keep search terms in middle of screen
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
+
+-- Keep register content when visual pasting
+vim.keymap.set("x", "<leader>p", "\"_dP")
