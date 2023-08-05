@@ -42,8 +42,10 @@ return {
         }
     },
 
+    -- gitsigns
     "lewis6991/gitsigns.nvim",
 
+    -- easy comments
     {
         "numToStr/Comment.nvim",
         config = function()
@@ -51,4 +53,11 @@ return {
         end
     },
 
+    -- autoclose brackets
+    {
+        "m4xshen/autoclose.nvim",
+        config = function()
+            require("autoclose").setup()
+        end
+    },
 }
