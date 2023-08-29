@@ -9,16 +9,28 @@ return {
     -- Nvim Tree Sitter
     {
         "nvim-treesitter/nvim-treesitter",
-        config = ":TSUpdate"
+        build = ":TSUpdate"
     },
 
-    -- Discord presence to flex on other people
-    "andweeb/presence.nvim",
+    -- Nvim UFO (code folding)
+    {
+        "kevinhwang91/nvim-ufo",
+        dependencies = { { "kevinhwang91/promise-async" } }
+    },
 
     -- colorscheme
     {
         "rebelot/kanagawa.nvim",
-        lazy = false
+        lazy = true,
+        config = function()
+            require("kanagawa").setup({
+                dimInactive = true,
+                background = {
+                    dark = "dragon",
+                    light = "lotus"
+                }
+            })
+        end
     },
 
     {

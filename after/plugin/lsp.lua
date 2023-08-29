@@ -25,7 +25,6 @@ lsp.ensure_installed({
     "rust_analyzer",
     "taplo",
     "yamlls",
-    "zls"
 })
 
 local cmp = require("cmp")
@@ -67,6 +66,20 @@ lsp.on_attach(function(client, bufnr)
     lsp_format_on_save(bufnr)
 end)
 
-require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
+
+local lsp_config = require("lspconfig")
+
+lsp_config.lua_ls.setup(lsp.nvim_lua_ls())
+lsp_config.zls.setup({})
+lsp_config.rust_analyzer.setup({
+    settings = {
+        ["rust_analyzer"] = {
+            check = {
+                command = "clippy"
+            }
+        }
+    }
+})
+lsp_config.omnisharp.setup({})
 
 lsp.setup()

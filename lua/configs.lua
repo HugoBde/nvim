@@ -13,4 +13,6 @@ vim.g.mapleader        = " "
 vim.opt.hlsearch       = false
 vim.opt.incsearch      = true
 vim.opt.colorcolumn    = "120"
-vim.cmd("colorscheme kanagawa-dragon")
+vim.opt.ignorecase     = true
+vim.opt.smartcase      = true
+vim.cmd("colorscheme kanagawa")
