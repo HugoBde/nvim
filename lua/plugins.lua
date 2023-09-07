@@ -72,4 +72,30 @@ return {
             require("autoclose").setup()
         end
     },
+
+    -- discord presence
+    {
+        "andweeb/presence.nvim"
+    },
+
+    -- trouble.nvim
+    {
+        "folke/trouble.nvim",
+        opts = {
+            icons = false,
+            fold_open = "v",
+            fold_closed = ">",
+            indent_lines = false,
+            signs = {
+                error = "X",
+                warning = "!",
+                hint = "?",
+                information = "*"
+            },
+            multiline = false,
+            use_diagnostic_signs = false,
+            auto_fold = false,
+            severity = vim.diagnostic.severity.WARN
+        },
+    }
 }

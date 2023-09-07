@@ -23,3 +23,6 @@ vim.keymap.set("n", "N", "Nzzzv")
 
 -- Keep register content when visual pasting
 vim.keymap.set("x", "<leader>p", "\"_dP")
+
+-- Open Diagnostic window / Trouble.nvim
+vim.keymap.set("n", "<leader>xx", function() require("trouble").toggle() end)
