@@ -3,18 +3,10 @@ require("nvim-treesitter.configs").setup {
         "c",
         "cpp",
         "diff",
-        "dockerfile",
-        "go",
-        "gomod",
-        "gosum",
-        "html",
-        "javascript",
         "json",
         "lua",
         "make",
         "markdown",
-        "rust",
-        "zig"
     },
 
     sync_install = false,
