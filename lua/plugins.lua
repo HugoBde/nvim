@@ -95,10 +95,9 @@ return {
             },
             multiline = false,
             use_diagnostic_signs = false,
-            auto_open = true,
+            auto_open = false,
             auto_close = true,
-            auto_fold = false,
-            severity = vim.diagnostic.severity.WARN
+            auto_fold = true
         },
     },
 
@@ -116,4 +115,5 @@ return {
             -- refer to the configuration section below
         }
     }
+
 }
