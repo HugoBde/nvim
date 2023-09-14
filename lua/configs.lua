@@ -15,4 +15,5 @@ vim.opt.incsearch      = true
 vim.opt.colorcolumn    = "120"
 vim.opt.ignorecase     = true
 vim.opt.smartcase      = true
+vim.opt.splitright      = true
 vim.cmd("colorscheme kanagawa")
