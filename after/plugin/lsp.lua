@@ -1,84 +1,83 @@
-local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-local lsp_format_on_save = function(bufnr)
-    vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-    vim.api.nvim_create_autocmd("BufWritePre", {
-        group = augroup,
-        buffer = bufnr,
-        callback = function()
-            vim.lsp.buf.format()
-        end
-    })
-end
+-- Set up some stuff when an LSP ataches to a buffer
+vim.api.nvim_create_autocmd("LspAttach", {
+    desc = "Lsp Attach Actions",
 
-local lsp = require('lsp-zero').preset({})
+    callback = function(event)
+        local bufnr = event.buf
 
-lsp.ensure_installed({
-    "clangd",
-    "cssls",
-    "dockerls",
-    "docker_compose_language_service",
-    "eslint",
-    "gopls",
-    "html",
-    "jsonls",
-    "marksman",
-    "rust_analyzer",
-    "taplo",
-    "yamlls",
-})
+        -- Set a bunch of keymaps
+        vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end,
+            { buffer = bufnr, remap = false, desc = "Go to definition" })
+        vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end,
+            { buffer = bufnr, remap = false, desc = "More info" })
+        vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end,
+            { buffer = bufnr, remap = false, desc = "Workspace symbol??" })
+        vim.keymap.set("n", "<leader>vd", function() vim.lsp.diagnostic.open_float() end,
+            { buffer = bufnr, remap = false, desc = "Open float??" })
+        vim.keymap.set("n", "[d", function() vim.lsp.buf.goto_next() end,
+            { buffer = bufnr, remap = false, desc = "Go to next" })
+        vim.keymap.set("n", "]d", function() vim.lsp.buf.goto_prev() end,
+            { buffer = bufnr, remap = false, desc = "Go to prev" })
+        vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end,
+            { buffer = bufnr, remap = false, desc = "Execute code action" })
+        vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end,
+            { buffer = bufnr, remap = false, desc = "List references" })
+        vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end,
+            { buffer = bufnr, remap = false, desc = "Rename symbol" })
+        vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end,
+            { buffer = bufnr, remap = false, desc = "Signature help" })
 
-local cmp = require("cmp")
-local cmp_select = { behavior = cmp.SelectBehavior.Select }
-local cmp_mappings = lsp.defaults.cmp_mappings({
-    ["<CR>"] = cmp.mapping({
-        i = function(fallback)
-            if cmp.visible() and cmp.get_active_entry() then
-                cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })
-            else
-                fallback()
+        -- Set up autoformattng
+        vim.api.nvim_create_autocmd("BufWritePre", {
+            buffer = bufnr,
+            callback = function()
+                vim.lsp.buf.format()
             end
-        end,
-        s = cmp.mapping.confirm({ select = true }),
-        c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
-    }),
-    ["<C-Space>"] = cmp.mapping.complete(),
+        })
+    end
+
 })
 
-cmp.setup({
-    mapping = cmp_mappings,
-    preselect = cmp.PreselectMode.None
+require('mason').setup()
+require('mason-lspconfig').setup({
+    ensure_installed = {
+        "clangd",
+        "cssls",
+        "dockerls",
+        "docker_compose_language_service",
+        "eslint",
+        "gopls",
+        "html",
+        "jsonls",
+        "lua_ls",
+        "marksman",
+        "omnisharp",
+        "pyright",
+        "rust_analyzer",
+        "taplo",
+        "tsserver",
+        "yamlls",
+    }
 })
-
-lsp.on_attach(function(client, bufnr)
-    vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end,
-        { buffer = bufnr, remap = false, desc = "Go to definition" })
-    vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, { buffer = bufnr, remap = false, desc = "More info" })
-    vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end,
-        { buffer = bufnr, remap = false, desc = "Workspace symbol??" })
-    vim.keymap.set("n", "<leader>vd", function() vim.lsp.diagnostic.open_float() end,
-        { buffer = bufnr, remap = false, desc = "Open float??" })
-    vim.keymap.set("n", "[d", function() vim.lsp.buf.goto_next() end,
-        { buffer = bufnr, remap = false, desc = "Go to next" })
-    vim.keymap.set("n", "]d", function() vim.lsp.buf.goto_prev() end,
-        { buffer = bufnr, remap = false, desc = "Go to prev" })
-    vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end,
-        { buffer = bufnr, remap = false, desc = "Execute code action" })
-    vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end,
-        { buffer = bufnr, remap = false, desc = "List references" })
-    vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end,
-        { buffer = bufnr, remap = false, desc = "Rename symbol" })
-    vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end,
-        { buffer = bufnr, remap = false, desc = "Signature help" })
-
-    lsp_format_on_save(bufnr)
-end)
-
 
 local lsp_config = require("lspconfig")
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-lsp_config.lua_ls.setup(lsp.nvim_lua_ls())
-lsp_config.zls.setup({})
+lsp_config.clangd.setup({ capabilities = capabilities, })
+lsp_config.cssls.setup({ capabilities = capabilities, })
+lsp_config.dockerls.setup({ capabilities = capabilities, })
+lsp_config.docker_compose_language_service.setup({ capabilities = capabilities, })
+lsp_config.eslint.setup({ capabilities = capabilities, })
+lsp_config.tsserver.setup({ capabilities = capabilities, })
+lsp_config.gopls.setup({ capabilities = capabilities, })
+lsp_config.html.setup({ capabilities = capabilities, })
+lsp_config.jsonls.setup({ capabilities = capabilities, })
+lsp_config.lua_ls.setup({ capabilities = capabilities })
+lsp_config.marksman.setup({ capabilities = capabilities, })
+lsp_config.omnisharp.setup({ capabilities = capabilities, })
+lsp_config.pyright.setup({ capabilities = capabilities, })
 lsp_config.rust_analyzer.setup({
+    capabilities = capabilities,
     settings = {
         ["rust_analyzer"] = {
             check = {
@@ -87,6 +86,5 @@ lsp_config.rust_analyzer.setup({
         }
     }
 })
-lsp_config.omnisharp.setup({})
-
-lsp.setup()
+lsp_config.taplo.setup({ capabilities = capabilities, })
+lsp_config.yamlls.setup({ capabilities = capabilities, })

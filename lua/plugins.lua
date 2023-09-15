@@ -33,25 +33,28 @@ return {
         end
     },
 
-    {
-        'VonHeikemen/lsp-zero.nvim',
-        branch = 'v2.x',
-        dependencies = {
-            -- LSP Support
-            { 'neovim/nvim-lspconfig' }, -- Required
-            {                            -- Optional
-                'williamboman/mason.nvim',
-                build = function()
-                    ---@diagnostic disable-next-line: param-type-mismatch
-                    pcall(vim.cmd, 'MasonUpdate')
-                end,
-            },
-            { 'williamboman/mason-lspconfig.nvim' }, -- Optional
+    -- LSP stuff
+    { 'neovim/nvim-lspconfig' },
 
-            -- Autocompletion
-            { 'hrsh7th/nvim-cmp' },     -- Required
-            { 'hrsh7th/cmp-nvim-lsp' }, -- Required
-            { 'L3MON4D3/LuaSnip' },     -- Required
+    {
+        'williamboman/mason.nvim',
+        dependencies = {
+            { 'williamboman/mason-lspconfig.nvim' },
+        },
+        build = function()
+            ---@diagnostic disable-next-line: param-type-mismatch
+            pcall(vim.cmd, 'MasonUpdate')
+        end,
+    },
+
+    -- Autocompletion
+    {
+        'hrsh7th/nvim-cmp',
+        dependencies = {
+            { 'hrsh7th/cmp-nvim-lsp' },
+            { 'hrsh7th/cmp-path' },
+            { 'hrsh7th/cmp-nvim-lua' },
+            { 'L3MON4D3/LuaSnip' },
         }
     },
 
