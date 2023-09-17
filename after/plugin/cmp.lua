@@ -1,5 +1,5 @@
 local cmp = require("cmp")
-local luasnip = require("luasnip") -- snippet engine
+local luasnip = require("luasnip") -- snippet enginecmp
 
 cmp.setup({
     -- Configure snippet engine
@@ -64,6 +64,7 @@ cmp.setup({
     -- two tables but whatever
     sources = cmp.config.sources({
         { name = "nvim_lsp" },
+        { name = "nvim_lsp_signature_help" },
         { name = "nvim_lua" },
         { name = "path" },
         { name = "luasnip" },
@@ -78,3 +79,5 @@ cmp.setup({
 
     preselect = cmp.PreselectMode.None
 })
+
+require("luasnip.loaders.from_vscode").lazy_load()

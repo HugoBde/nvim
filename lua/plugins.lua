@@ -52,6 +52,7 @@ return {
         'hrsh7th/nvim-cmp',
         dependencies = {
             { 'hrsh7th/cmp-nvim-lsp' },
+            { 'hrsh7th/cmp-nvim-lsp-signature-help' },
             { 'hrsh7th/cmp-path' },
             { 'hrsh7th/cmp-nvim-lua' },
         }
@@ -59,7 +60,11 @@ return {
 
     {
         'L3MON4D3/LuaSnip',
-        build = "make install_jsregexp"
+        build = "make install_jsregexp",
+        dependencies = {
+            { "saadparwaiz1/cmp_luasnip" },
+            { "rafamadriz/friendly-snippets" }
+        }
     },
 
     -- gitsigns
@@ -73,12 +78,11 @@ return {
         end
     },
 
-    -- autoclose brackets
+    -- autopair brackets
     {
-        "m4xshen/autoclose.nvim",
-        config = function()
-            require("autoclose").setup()
-        end
+        'windwp/nvim-autopairs',
+        event = "InsertEnter",
+        opts = {} -- this is equalent to setup({}) function
     },
 
     -- discord presence
