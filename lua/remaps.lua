@@ -32,7 +32,8 @@ vim.keymap.set("n", "<leader>xz", function() require("trouble").open() end, { de
 vim.keymap.set("n", "<leader>xc", function() require("trouble").close() end, { desc = "close diagnostic window" })
 
 -- Start replacing word
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+    { desc = "replace word under cursor" })
 
 -- Yank word under cursor
 vim.keymap.set("n", "<leader>y", "bvey", { desc = "yank word under cursor" })
