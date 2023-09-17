@@ -44,8 +44,11 @@ local lsps = {
     dockerls = {},
     docker_compose_language_service = {},
     eslint = {
-        on_attach = function(client, _)
-            client.server_capabilities.documentFormattingProvider = true
+        on_attach = function(client, bufnr)
+            vim.api.nvim_create_autocmd("BufWritePre", {
+                buffer = bufnr,
+                command = "EslintFixAll",
+            })
         end
     },
     gopls = {},
