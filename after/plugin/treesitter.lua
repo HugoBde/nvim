@@ -1,12 +1,10 @@
 require("nvim-treesitter.configs").setup {
     ensure_installed = {
+        "bash",
         "c",
-        "cpp",
-        "diff",
         "json",
         "lua",
         "make",
-        "markdown",
     },
 
     sync_install = false,
