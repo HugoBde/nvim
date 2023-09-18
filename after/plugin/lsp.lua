@@ -1,3 +1,6 @@
+local utils = require("utils")
+
+
 -- Set up some stuff when an LSP ataches to a buffer
 vim.api.nvim_create_autocmd("LspAttach", {
   desc = "lsp Attach Actions",
@@ -8,7 +11,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
     -- Set a bunch of keymaps
     vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end,
       { buffer = bufnr, remap = false, desc = "go to definition" })
-    vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, { buffer = bufnr, remap = false, desc = "more info" })
+    vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end,
+      { buffer = bufnr, remap = false, desc = "more info" })
     vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end,
       { buffer = bufnr, remap = false, desc = "workspace symbol??" })
     vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end,
@@ -44,7 +48,7 @@ local lsps = {
 
 require('mason').setup()
 require('mason-lspconfig').setup({
-  ensure_installed = lsps
+  ensure_installed = utils.get_keys(lsps)
 })
 
 local lsp_config = require("lspconfig")

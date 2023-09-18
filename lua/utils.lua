@@ -12,5 +12,13 @@ utils.merge_tables = function(table_a, table_b)
     return out
 end
 
+utils.get_keys = function(table_a)
+    local keys = {}
+    for key, _ in pairs(table_a) do
+        table.insert(keys, key)
+    end
+    return keys
+end
+
 
 return utils
