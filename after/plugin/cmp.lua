@@ -9,6 +9,10 @@ cmp.setup({
         end
     },
 
+    view = {
+        entries = { selection_order = "near_cursor" }
+    },
+
     mapping = {
         ["<C-Up>"] = cmp.mapping(function(fallback)
             if not cmp.scroll_docs(-4) then
