@@ -20,5 +20,9 @@ utils.get_keys = function(table_a)
     return keys
 end
 
+utils.get_file_extension = function(file_name)
+    return file_name:match("^.+(%..+)$")
+end
+
 
 return utils

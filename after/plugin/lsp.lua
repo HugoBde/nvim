@@ -30,10 +30,17 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end,
       { buffer = bufnr, remap = false, desc = "signature help" })
 
+    -- If editing a c or header file for work, don't setup autoformattng
+    local file_extension = utils.get_file_extension(event.file)
+
+    if (file_extension == ".c" or file_extension == ".h") then
+      return
+    end
+
     -- Set up autoformattng
     vim.api.nvim_create_autocmd("BufWritePre", {
       buffer = bufnr,
-      callback = function()
+      callback = function(event)
         vim.lsp.buf.format()
       end
     })

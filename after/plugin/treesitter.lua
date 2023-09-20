@@ -1,18 +1,19 @@
 require("nvim-treesitter.configs").setup {
-    ensure_installed = {
-        "bash",
-        "c",
-        "json",
-        "lua",
-        "make",
-    },
+  ensure_installed = {
+    "bash",
+    "c",
+    "javascript",
+    "json",
+    "lua",
+    "make",
+  },
 
-    sync_install = false,
+  sync_install = false,
 
-    auto_install = true,
+  auto_install = true,
 
-    highlight = {
-        enable = true,
-        additional_vim_regex_highlighting = false,
-    },
+  highlight = {
+    enable = true,
+    additional_vim_regex_highlighting = false,
+  },
 }

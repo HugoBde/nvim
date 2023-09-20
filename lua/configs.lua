@@ -19,16 +19,17 @@ vim.opt.splitright     = true
 vim.cmd("colorscheme kanagawa")
 
 -- Set Wrap on a file type basis
+local utils = require("utils")
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
-    callback = function(event)
-        local file_name = event.file
+  callback = function(event)
+    local file_name = event.file
 
-        local file_extension = file_name:match("^.+(%..+)$")
+    local file_extension = utils.get_file_extension(file_name)
 
-        if file_extension == ".md" or file_extension == ".txt" then
-            vim.opt.wrap = true
-        else
-            vim.opt.wrap = false
-        end
+    if file_extension == ".md" or file_extension == ".txt" then
+      vim.opt.wrap = true
+    else
+      vim.opt.wrap = false
     end
+  end
 })
