@@ -126,6 +126,34 @@ return {
             -- or leave it empty to use the default settings
             -- refer to the configuration section below
         }
-    }
+    },
 
+    -- Indent blankline
+    {
+        "lukas-reineke/indent-blankline.nvim",
+        config = function()
+            require("indent_blankline").setup({
+                show_first_indent_level = false,
+                char_blankline = '',
+            })
+        end
+    },
+
+    -- references highlight
+    {
+        'tzachar/local-highlight.nvim',
+        config = function()
+            require('local-highlight').setup()
+        end
+    },
+
+    -- undo highlight
+    {
+        'tzachar/highlight-undo.nvim',
+        config = function()
+            require('highlight-undo').setup({
+                duration = 500
+            })
+        end
+    },
 }

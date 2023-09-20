@@ -16,6 +16,7 @@ vim.opt.colorcolumn    = "120"
 vim.opt.ignorecase     = true
 vim.opt.smartcase      = true
 vim.opt.splitright     = true
+vim.opt.updatetime     = 750
 vim.cmd("colorscheme kanagawa")
 
 -- Set Wrap on a file type basis
