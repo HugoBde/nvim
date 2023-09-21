@@ -184,6 +184,9 @@ return {
             "SmiteshP/nvim-navic",
         },
         opts = {
+            symbols = {
+                separator = ">"
+            },
             kinds = false
         },
     },

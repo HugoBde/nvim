@@ -12,7 +12,8 @@ require("lualine").setup({
         },
         lualine_b = {
             {
-                'branch'
+                'branch',
+                icons_enabled = false
             },
             {
                 'diff'
