@@ -18,7 +18,7 @@ vim.opt.splitright     = true
 vim.opt.updatetime     = 750
 vim.opt.swapfile       = false
 vim.opt.backup         = false
-vim.opt.undodir        = os.getenv("HOME") .. "/.nvim/undodir"
+vim.opt.undodir        = "C:\\Users\\Hugo\\Documents\\nvim"
 vim.opt.undofile       = true
 
 vim.diagnostic.config({
