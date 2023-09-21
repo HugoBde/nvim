@@ -23,8 +23,8 @@ vim.keymap.set("n", "N", "Nzzzv")
 
 -- Keep register content when visual pasting
 vim.keymap.set("x", "<leader>p", "\"_dP", { desc = "paste and keep register content" })
-vim.keymap.set("n", "<leader>d", "\"_d", { desc = "delete" })
-vim.keymap.set("x", "<leader>d", "\"_d", { desc = "delete" })
+vim.keymap.set("n", "<leader>d", "\"_d", { desc = "delete and keep register content" })
+vim.keymap.set("x", "<leader>d", "\"_d", { desc = "delete and keep register content" })
 
 -- Open Diagnostic window / Trouble.nvim
 vim.keymap.set("n", "<leader>xx", function() require("trouble").toggle() end, { desc = "toggle diagnostic window" })
@@ -33,7 +33,10 @@ vim.keymap.set("n", "<leader>xc", function() require("trouble").close() end, { d
 
 -- Start replacing word
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
-    { desc = "replace word under cursor" })
+  { desc = "replace word under cursor globally" })
 
 -- Yank word under cursor
-vim.keymap.set("n", "<leader>y", "bvey", { desc = "yank word under cursor" })
+vim.keymap.set("n", "<leader>y", "viwy", { desc = "yank word under cursor" })
+
+-- Replace word under cursor
+vim.keymap.set("n", "<leader>c", "viwc", { desc = "replace word under cursor" })

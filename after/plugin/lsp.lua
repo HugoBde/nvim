@@ -29,55 +29,27 @@ vim.api.nvim_create_autocmd("LspAttach", {
         vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end,
             { buffer = bufnr, remap = false, desc = "signature help" })
 
-    -- If editing a c or header file for work, don't setup autoformattng
-    local file_extension = utils.get_file_extension(event.file)
+        -- If editing a c or header file for work, don't setup autoformattng
+        local file_extension = utils.get_file_extension(event.file)
 
-    if (file_extension == ".c" or file_extension == ".h") then
-      return
+        if (file_extension == ".c" or file_extension == ".h") then
+            return
+        end
+
+        -- Set up autoformattng
+        vim.api.nvim_create_autocmd("BufWritePre", {
+            buffer = bufnr,
+            callback = function()
+                vim.lsp.buf.format()
+            end
+        })
     end
-
-    -- Set up autoformattng
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      buffer = bufnr,
-      callback = function()
-        vim.lsp.buf.format()
-      end
-    })
-  end
 })
 
 local lsps = {
     clangd = {},
-    cssls = {},
-    dockerls = {},
-    docker_compose_language_service = {},
-    eslint = {
-        on_attach = function(client, bufnr)
-            vim.api.nvim_create_autocmd("BufWritePre", {
-                buffer = bufnr,
-                command = "EslintFixAll",
-            })
-        end
-    },
-    gopls = {},
-    html = {},
     jsonls = {},
     lua_ls = {},
-    marksman = {},
-    omnisharp = {},
-    pyright = {},
-    rust_analyzer = {
-        settings = {
-            ["rust_analyzer"] = {
-                check = {
-                    command = "clippy"
-                }
-            }
-        }
-    },
-    taplo = {},
-    tsserver = {},
-    yamlls = {}
 }
 
 require('mason').setup()

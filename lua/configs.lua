@@ -2,8 +2,8 @@ vim.opt.number         = true
 vim.opt.relativenumber = true
 vim.opt.termguicolors  = true
 vim.opt.tabstop        = 8
-vim.opt.softtabstop    = 4
-vim.opt.shiftwidth     = 4
+vim.opt.softtabstop    = 2
+vim.opt.shiftwidth     = 2
 vim.opt.expandtab      = true
 vim.opt.smarttab       = true
 vim.opt.scrolloff      = 8
@@ -22,15 +22,15 @@ vim.cmd("colorscheme kanagawa")
 -- Set Wrap on a file type basis
 local utils = require("utils")
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
-  callback = function(event)
-    local file_name = event.file
+    callback = function(event)
+        local file_name = event.file
 
-    local file_extension = utils.get_file_extension(file_name)
+        local file_extension = utils.get_file_extension(file_name)
 
-    if file_extension == ".md" or file_extension == ".txt" then
-      vim.opt.wrap = true
-    else
-      vim.opt.wrap = false
+        if file_extension == ".md" or file_extension == ".txt" then
+            vim.opt.wrap = true
+        else
+            vim.opt.wrap = false
+        end
     end
-  end
 })
