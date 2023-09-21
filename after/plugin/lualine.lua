@@ -46,7 +46,15 @@ require("lualine").setup({
             }
         },
         lualine_z = {
-            { 'location' }
+            {
+                'location',
+                fmt = function(str)
+                    local vals = string.gmatch(str, "%d+")
+                    local ln = tostring(vals())
+                    local col = tostring(vals())
+                    return "Ln: " .. ln .. " Col: " .. col;
+                end
+            }
         }
     },
 })
