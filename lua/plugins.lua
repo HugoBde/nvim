@@ -3,7 +3,9 @@ return {
     {
         "nvim-telescope/telescope.nvim",
         version = "0.1.0",
-        dependencies = { { "nvim-lua/plenary.nvim" } }
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+        }
     },
 
     -- Nvim Tree Sitter
@@ -69,14 +71,25 @@ return {
     },
 
     -- gitsigns
-    "lewis6991/gitsigns.nvim",
+    {
+        "lewis6991/gitsigns.nvim",
+        config = function()
+            require("gitsigns").setup()
+        end
+    },
 
     -- easy comments
     {
         "numToStr/Comment.nvim",
         config = function()
-            require("Comment").setup()
-        end
+            require("Comment").setup({
+                mappings = {
+                    extra = false
+                },
+            })
+        end,
+
+        lazy = false
     },
 
     -- autopair brackets
@@ -156,4 +169,62 @@ return {
             })
         end
     },
+
+    -- undo tree
+    {
+        "mbbill/undotree"
+    },
+
+    -- barbecue nvim (context bar)
+    {
+        "utilyre/barbecue.nvim",
+        name = "barbecue",
+        version = "*",
+        dependencies = {
+            "SmiteshP/nvim-navic",
+        },
+        opts = {
+            kinds = false
+        },
+    },
+
+    -- lua line
+    {
+        "nvim-lualine/lualine.nvim",
+        config = function()
+            require("lualine").setup({
+                options = {
+                    section_separators = '',
+                    component_separators = '',
+                    theme = "codedark", -- todo: make it match colorscheme
+                },
+                sections = {
+                    lualine_a = { 'mode' },
+                    lualine_b = { 'branch', 'diff' },
+                    lualine_c = {
+                        {
+                            'filename',
+                            newfile_status = true,
+                            path = 1
+                        },
+                    },
+
+                    lualine_x = { {
+                        'diagnostics',
+                        icons_enabled = false,
+                        sections = { "error", "warn" },
+                        update_in_insert = true,
+                        always_visible = true,
+                    }, 'filetype' },
+                    lualine_y = {
+                        {
+                            'datetime',
+                            style = "%H:%M:%S"
+                        }
+                    },
+                    lualine_z = { 'location' }
+                },
+            })
+        end
+    }
 }

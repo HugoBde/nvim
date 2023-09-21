@@ -1,5 +1,22 @@
 local utils = require("utils")
 
+-- Make borders rounded for Hover and Signature Help
+vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
+    vim.lsp.handlers.hover,
+    { border = 'rounded' }
+)
+
+vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
+    vim.lsp.handlers.signature_help,
+    { border = 'rounded' }
+)
+
+vim.diagnostic.config({
+    float = {
+        border = "rounded"
+    }
+})
+
 -- Set up some stuff when an LSP ataches to a buffer
 vim.api.nvim_create_autocmd("LspAttach", {
     desc = "lsp Attach Actions",

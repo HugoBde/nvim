@@ -1,10 +1,10 @@
 local builtin = require("telescope.builtin")
 
-vim.keymap.set("n", "<leader>pf", builtin.find_files, { desc = "telescope search in files" })
-vim.keymap.set("n", "<leader>pF", builtin.git_files, { desc = "telescope search in Git Files" })
-vim.keymap.set("n", "<leader>ps", builtin.live_grep, { desc = "telescope Live Grep" })
-vim.keymap.set("n", "<leader>pd", builtin.grep_string, { desc = "telescope Grep search selection" })
-vim.keymap.set("n", "<leader>pa", builtin.buffers, { desc = "telescope search in open buffers" })
+vim.keymap.set("n", "<leader>tf", builtin.find_files, { desc = "telescope search in files" })
+vim.keymap.set("n", "<leader>tF", builtin.git_files, { desc = "telescope search in Git Files" })
+vim.keymap.set("n", "<leader>ts", builtin.live_grep, { desc = "telescope Live Grep" })
+vim.keymap.set("n", "<leader>td", builtin.grep_string, { desc = "telescope Grep search selection" })
+vim.keymap.set("n", "<leader>ta", builtin.buffers, { desc = "telescope search in open buffers" })
 
 local actions = require("telescope.actions")
 
