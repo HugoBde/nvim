@@ -11,9 +11,6 @@ require("lazy").setup("plugins")
 require("configs")
 require("remaps")
 
-local wk = require("which-key")
-wk.register(mappings, opts)
-
 pcall(function()
     require("subversigns").setup()
 end)
