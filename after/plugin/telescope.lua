@@ -25,3 +25,14 @@ require("telescope").setup({
         }
     }
 })
+
+require("which-key").register({
+    t = {
+        name = "Telescope",
+        f = { "search in files" },
+        F = { "search in Git files" },
+        s = { "live grep search" },
+        d = { "grep search word under cursor" },
+        a = { "search in open buffers" },
+    },
+}, { prefix = "<leader>" })
