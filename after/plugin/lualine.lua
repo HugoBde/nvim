@@ -35,7 +35,10 @@ require("lualine").setup({
                 always_visible = true,
             },
             {
-                'filetype'
+                'filetype',
+                fmt = function(str)
+                    return (str:gsub("^%l", string.upper))
+                end
             }
         },
         lualine_y = {
