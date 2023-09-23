@@ -37,7 +37,20 @@ require("lualine").setup({
             {
                 'filetype',
                 fmt = function(str)
-                    return (str:gsub("^%l", string.upper))
+                    local better_filetypes = {
+                        c = "C",
+                        cpp = "C++",
+                        rust = "Rust",
+                        cs = "C#",
+                        typescriptreact = "TSX",
+                        javascriptreact = "JSX",
+                        typescript = "TS",
+                        javascript = "JS",
+                        lua = "Lua"
+                        -- Add more filetypes here if needed
+                    }
+
+                    return better_filetypes[str] or str
                 end
             }
         },
