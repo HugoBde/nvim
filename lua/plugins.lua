@@ -23,7 +23,8 @@ return {
     -- colorscheme
     {
         "rebelot/kanagawa.nvim",
-        lazy = true,
+        lazy = false,
+        priority = 1000,
         config = function()
             require("kanagawa").setup({
                 dimInactive = true,
@@ -192,5 +193,19 @@ return {
     -- lua line
     {
         "nvim-lualine/lualine.nvim"
-    }
+    },
+
+    -- fidget nvim LSP Progress
+    {
+        "j-hui/fidget.nvim",
+        tag = "legacy",
+        event = "LspAttach",
+        config = function()
+            require("fidget").setup({
+                text = {
+                    spinner = "meter",
+                },
+            })
+        end
+    },
 }
