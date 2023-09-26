@@ -36,7 +36,23 @@ require("lualine").setup({
                 always_visible = true,
             },
             {
-                'filetype'
+                'filetype',
+                fmt = function(str)
+                    local better_filetypes = {
+                        c = "C",
+                        cpp = "C++",
+                        rust = "Rust",
+                        cs = "C#",
+                        typescriptreact = "TSX",
+                        javascriptreact = "JSX",
+                        typescript = "TS",
+                        javascript = "JS",
+                        lua = "Lua"
+                        -- Add more filetypes here if needed
+                    }
+
+                    return better_filetypes[str] or str
+                end
             }
         },
         lualine_y = {
