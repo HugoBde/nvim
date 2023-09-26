@@ -27,6 +27,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
         -- Set a bunch of keymaps
         vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end,
             { buffer = bufnr, remap = false, desc = "go to definition" })
+        vim.keymap.set("n", "gD", ":vsplit | lua vim.lsp.buf.definition()",
+            { buffer = bufnr, remap = false, desc = "go to definition in split" })
+        vim.keymap.set("n", "gt", function() vim.lsp.buf.type_definition() end,
+            { buffer = bufnr, remap = false, desc = "go to type definition" })
         vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end,
             { buffer = bufnr, remap = false, desc = "more info" })
         vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end,
