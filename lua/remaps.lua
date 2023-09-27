@@ -25,11 +25,17 @@ vim.keymap.set("x", "<leader>p", "\"_dP", { desc = "paste and keep register cont
 vim.keymap.set({ "n", "x" }, "<leader>d", "\"_d", { desc = "delete and keep register content" })
 
 -- Start replacing word
+-- todo: add similar bindings for visual selection mode to only sub the selected string
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
-  { desc = "replace word under cursor globally" })
+    { desc = "replace word under cursor globally" })
 
-vim.keymap.set("n", "<leader>S", [[:s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
-  { desc = "replace word under cursor in line" })
+vim.keymap.set("n", "<leader>S", [[V:s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+    { desc = "replace word under cursor in line" })
 
 vim.keymap.set("n", "<leader>y", "viwy", { desc = "yank word under cursor" })
 vim.keymap.set("n", "<leader>c", "viwc", { desc = "replace word under cursor" })
+
+vim.keymap.set("n", "<leader>=", "<cmd>wincmd =<cr>", { desc = "resize split" })
+
+-- Todo: maybe add more complex logic to open man pages when filetype is c/cpp, or open vim help pages instead
+vim.keymap.set("n", "<leader>m", ":vert Man <C-r><C-w><CR>", { desc = "open man page of word under cursor" })
