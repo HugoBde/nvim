@@ -29,7 +29,7 @@ vim.keymap.set({ "n", "x" }, "<leader>d", "\"_d", { desc = "delete and keep regi
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
     { desc = "replace word under cursor globally" })
 
-vim.keymap.set("n", "<leader>S", [[V:s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+vim.keymap.set("n", "<leader>S", [[:s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
     { desc = "replace word under cursor in line" })
 
 vim.keymap.set("n", "<leader>y", "viwy", { desc = "yank word under cursor" })
