@@ -8,6 +8,5 @@ require("formatter").setup({
 
 
 require("which-key").register({
-    f = { ":Format<CR>", "format buffer" },
-    F = { ":FormatWrite<CR>", "format buffer and save" },
+    F = { ":Format<CR>", "format buffer" },
 }, { prefix = "<leader>" })
