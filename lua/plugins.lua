@@ -146,10 +146,12 @@ return {
     -- Indent blankline
     {
         "lukas-reineke/indent-blankline.nvim",
+        main = "ibl",
         config = function()
-            require("indent_blankline").setup({
-                show_first_indent_level = false,
-                char_blankline = '',
+            require("ibl").setup({
+                scope = {
+                    enabled = false
+                }
             })
         end
     },
@@ -211,4 +213,14 @@ return {
             })
         end
     },
+
+    -- null ls to get formatting
+    {
+        "mhartington/formatter.nvim",
+    },
+
+    -- nvim ts autotags
+    {
+        "windwp/nvim-ts-autotag"
+    }
 }
