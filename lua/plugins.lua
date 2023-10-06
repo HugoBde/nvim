@@ -213,14 +213,4 @@ return {
             })
         end
     },
-
-    -- null ls to get formatting
-    {
-        "mhartington/formatter.nvim",
-    },
-
-    -- nvim ts autotags
-    {
-        "windwp/nvim-ts-autotag"
-    }
 }
