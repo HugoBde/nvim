@@ -2,6 +2,9 @@ require("formatter").setup({
     filetype = {
         python = {
             require("formatter.filetypes.python").autopep8,
+        },
+        ocaml = {
+            require("formatter.filetypes.ocaml").ocamlformat
         }
     }
 })

@@ -91,6 +91,7 @@ local lsps = {
     lua_ls = {},
     marksman = {},
     omnisharp = {},
+    ocamllsp = {},
     pyright = {},
     rust_analyzer = {
         settings = {

@@ -20,6 +20,7 @@ require("nvim-treesitter.configs").setup {
         "make",
         "markdown",
         "markdown_inline",
+        "ocaml",
         "python",
         "regex",
         "rust",
