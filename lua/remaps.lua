@@ -1,4 +1,9 @@
 vim.keymap.set("n", "<leader>e", vim.cmd.Ex, { desc = "open NetRW" })
+vim.keymap.set("n", "<leader>E", function()
+    vim.cmd("vsplit")
+    vim.cmd.Ex()
+end
+, { desc = "open NetRW" })
 
 -- go to  beginning and end
 vim.keymap.set("i", "<C-b>", "<ESC>^i", { desc = "go to beginning of line" })
