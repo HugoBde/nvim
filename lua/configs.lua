@@ -27,8 +27,6 @@ vim.diagnostic.config({
     severity_sort = true,
 })
 
-vim.cmd("colorscheme kanagawa")
-
 -- Set Wrap on a file type basis
 local utils = require("utils")
 vim.api.nvim_create_autocmd({ "BufEnter" }, {

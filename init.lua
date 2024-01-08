@@ -7,7 +7,11 @@ vim.opt.rtp:prepend(lazypath)
 
 vim.g.mapleader = " "
 
-require("lazy").setup("plugins")
+require("lazy").setup("plugins", {
+    checker = {
+        enabled = true
+    }
+})
 require("configs")
 require("remaps")
 
