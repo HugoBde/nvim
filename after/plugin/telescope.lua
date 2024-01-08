@@ -2,7 +2,9 @@ local builtin = require("telescope.builtin")
 
 local actions = require("telescope.actions")
 
-require("telescope").setup({
+local telescope = require("telescope")
+
+telescope.setup({
     defaults = {
         mappings = {
             n = {
@@ -19,6 +21,8 @@ require("telescope").setup({
         }
     }
 })
+
+telescope.load_extension("fzf")
 
 require("which-key").register({
     f = {

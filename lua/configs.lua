@@ -27,8 +27,6 @@ vim.diagnostic.config({
     severity_sort = true,
 })
 
-vim.cmd("colorscheme kanagawa")
-
 -- Set Wrap on a file type basis
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
     callback = function(event)
@@ -52,6 +50,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
             typescriptreact = 2,
             javascript = 2,
             typescript = 2,
+            go = 8
         }
         local default_tab_size = 4
         local tab_size = config_tab_size[event.match] or default_tab_size

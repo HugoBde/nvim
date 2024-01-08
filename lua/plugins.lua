@@ -2,9 +2,15 @@ return {
 
     {
         "nvim-telescope/telescope.nvim",
-        version = "0.1.0",
+        tag = "0.1.5",
+
         dependencies = {
             "nvim-lua/plenary.nvim",
+            {
+                "nvim-telescope/telescope-fzf-native.nvim",
+                build =
+                "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build"
+            }
         }
     },
 
@@ -12,12 +18,6 @@ return {
     {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate"
-    },
-
-    -- Nvim UFO (code folding)
-    {
-        "kevinhwang91/nvim-ufo",
-        dependencies = { { "kevinhwang91/promise-async" } }
     },
 
     -- colorscheme
@@ -28,11 +28,15 @@ return {
         config = function()
             require("kanagawa").setup({
                 dimInactive = true,
+                commentStyle = {
+                    italic = false
+                },
                 background = {
                     dark = "dragon",
                     light = "lotus"
                 }
             })
+            vim.cmd("colorscheme kanagawa")
         end
     },
 
@@ -82,14 +86,17 @@ return {
     -- easy comments
     {
         "numToStr/Comment.nvim",
+        dependencies = {
+            'JoosepAlviste/nvim-ts-context-commentstring'
+        },
         config = function()
             require("Comment").setup({
                 mappings = {
                     extra = false
                 },
+                pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
             })
         end,
-
         lazy = false
     },
 
@@ -136,9 +143,16 @@ return {
             vim.o.timeoutlen = 300
         end,
         opts = {
+            marks = false,
+            registers = false,
             icons = {
+                breadcrumb = ">>",
                 separator = ">",
                 group = ""
+            },
+            window = {
+                border = "single",
+                winblend = 50,
             }
         }
     },
@@ -147,20 +161,13 @@ return {
     {
         "lukas-reineke/indent-blankline.nvim",
         main = "ibl",
+        opts = {
+            scope = {
+                enabled = false
+            }
+        },
         config = function()
-            require("ibl").setup({
-                scope = {
-                    enabled = false
-                }
-            })
-        end
-    },
-
-    -- references highlight
-    {
-        'tzachar/local-highlight.nvim',
-        config = function()
-            require('local-highlight').setup()
+            require("ibl").setup()
         end
     },
 
@@ -188,6 +195,9 @@ return {
             "SmiteshP/nvim-navic",
         },
         opts = {
+            symbols = {
+                separator = ""
+            },
             kinds = false
         },
     },
@@ -195,20 +205,6 @@ return {
     -- lua line
     {
         "nvim-lualine/lualine.nvim"
-    },
-
-    -- fidget nvim LSP Progress
-    {
-        "j-hui/fidget.nvim",
-        tag = "legacy",
-        event = "LspAttach",
-        config = function()
-            require("fidget").setup({
-                text = {
-                    spinner = "meter",
-                },
-            })
-        end
     },
 
     -- null ls to get formatting
@@ -219,5 +215,5 @@ return {
     -- nvim ts autotags
     {
         "windwp/nvim-ts-autotag"
-    }
+    },
 }

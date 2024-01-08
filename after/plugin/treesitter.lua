@@ -27,6 +27,7 @@ require("nvim-treesitter.configs").setup {
         "sxhkdrc",
         "toml",
         "typescript",
+        "tsx",
         "vim",
         "zig"
     },
