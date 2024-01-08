@@ -81,8 +81,24 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 local lsps = {
     clangd = {},
+    eslint = {
+        on_attach = function(_, bufnr)
+            vim.api.nvim_create_autocmd("BufWritePre", {
+                buffer = bufnr,
+                command = "EslintFixAll",
+            })
+        end,
+        settings = {
+            codeActionOnSave = {
+                enable = true,
+                mode = "all"
+            }
+        }
+    },
+    html = {},
     jsonls = {},
     lua_ls = {},
+    tsserver = {},
 }
 
 require('mason').setup()

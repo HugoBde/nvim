@@ -6,6 +6,7 @@ require("nvim-treesitter.configs").setup {
         "json",
         "lua",
         "make",
+        "typescript",
     },
 
     sync_install = false,

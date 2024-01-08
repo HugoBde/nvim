@@ -52,8 +52,10 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
             javascriptreact = 2,
             typescriptreact = 2,
             c = 2,
+            cpp = 2,
             javascript = 2,
             typescript = 2,
+            html = 2,
         }
         local default_tab_size = 4
         local tab_size = config_tab_size[event.match] or default_tab_size

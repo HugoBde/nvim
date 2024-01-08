@@ -216,4 +216,9 @@ return {
             })
         end
     },
+
+    -- nvim ts autotags
+    {
+        "windwp/nvim-ts-autotag"
+    }
 }
