@@ -103,6 +103,7 @@ local lsps = {
         }
     },
     taplo = {},
+    tailwindcss = {},
     tsserver = {},
     yamlls = {}
 }
