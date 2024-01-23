@@ -207,6 +207,14 @@ return {
         "nvim-lualine/lualine.nvim"
     },
 
+    -- bringing back ufo to fold code
+    {
+        "/kevinhwang91/nvim-ufo",
+        dependencies = {
+            "kevinhwang91/promise-async"
+        }
+    },
+
     -- null ls to get formatting
     {
         "mhartington/formatter.nvim",
