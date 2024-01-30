@@ -23,7 +23,14 @@ vim.opt.undodir        = os.getenv("HOME") .. "/.nvim/undodir"
 vim.opt.undofile       = true
 
 vim.diagnostic.config({
-    signs = false,
+    signs = {
+        text = {
+            [vim.diagnostic.severity.ERROR] = "󰀨",
+            [vim.diagnostic.severity.WARN]  = "󰀦",
+            [vim.diagnostic.severity.HINT]  = "󰌵",
+            [vim.diagnostic.severity.INFO]  = ""
+        }
+    },
     severity_sort = true,
 })
 

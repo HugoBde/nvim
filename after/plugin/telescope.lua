@@ -25,7 +25,7 @@ telescope.setup({
 telescope.load_extension("fzf")
 
 require("which-key").register({
-    f = {
+    t = {
         name = "Telescope",
         f = { builtin.find_files, "search in files" },
         F = { builtin.git_files, "search in Git files" },

@@ -61,14 +61,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
             {
                 buffer = bufnr
             })
-
-        -- Set up autoformattng
-        vim.api.nvim_create_autocmd("BufWritePre", {
-            buffer = bufnr,
-            callback = function()
-                vim.lsp.buf.format()
-            end
-        })
     end
 })
 
@@ -78,12 +70,12 @@ local lsps = {
     dockerls = {},
     docker_compose_language_service = {},
     eslint = {
-        on_attach = function(_, bufnr)
-            vim.api.nvim_create_autocmd("BufWritePre", {
-                buffer = bufnr,
-                command = "EslintFixAll",
-            })
-        end
+        --     on_attach = function(_, bufnr)
+        --         vim.api.nvim_create_autocmd("BufWritePre", {
+        --             buffer = bufnr,
+        --             command = "EslintFixAll",
+        --         })
+        --     end
     },
     gopls = {},
     html = {},

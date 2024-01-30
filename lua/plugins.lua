@@ -142,13 +142,12 @@ return {
             marks = false,
             registers = false,
             icons = {
-                breadcrumb = ">>",
-                separator = ">",
-                group = ""
+                breadcrumb = "󰄾",
+                separator = "",
+                group = "󰆧 "
             },
             window = {
-                border = "single",
-                winblend = 50,
+                border = "rounded",
             }
         }
     },
@@ -192,9 +191,10 @@ return {
         },
         opts = {
             symbols = {
+                modified = "●",
+                ellipsis = "…",
                 separator = ""
             },
-            -- kinds = true
         },
     },
 
@@ -213,7 +213,7 @@ return {
 
     -- null ls to get formatting
     {
-        "mhartington/formatter.nvim",
+        'stevearc/conform.nvim',
     },
 
     -- nvim ts autotags
