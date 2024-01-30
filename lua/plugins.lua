@@ -1,5 +1,6 @@
 return {
 
+    -- telescope my beloved
     {
         "nvim-telescope/telescope.nvim",
         tag = "0.1.5",
@@ -107,24 +108,19 @@ return {
         opts = {} -- this is equalent to setup({}) function
     },
 
-    -- discord presence
-    {
-        "andweeb/presence.nvim"
-    },
-
     -- trouble.nvim
     {
         "folke/trouble.nvim",
         opts = {
             icons = false,
-            fold_open = "v",
-            fold_closed = ">",
+            fold_open = "",
+            fold_closed = "",
             indent_lines = false,
             signs = {
-                error = "X",
-                warning = "!",
-                hint = "?",
-                information = "*"
+                error       = "󰀨",
+                warning     = "󰀦",
+                hint        = "󰌵",
+                information = ""
             },
             multiline = false,
             use_diagnostic_signs = false,
@@ -196,9 +192,9 @@ return {
         },
         opts = {
             symbols = {
-                separator = ""
+                separator = ""
             },
-            kinds = false
+            -- kinds = true
         },
     },
 
@@ -224,4 +220,9 @@ return {
     {
         "windwp/nvim-ts-autotag"
     },
+
+    -- vim apm
+    {
+        "ThePrimeagen/vim-apm",
+    }
 }
