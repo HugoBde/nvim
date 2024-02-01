@@ -1,49 +1,53 @@
-local palette = require("kanagawa.colors").setup().palette
+local kana = require("kanagawa.colors").setup()
+
+local lualine_kanagawa_theme = {
+    normal = {
+        a = { bg = kana.theme.syn.fun, fg = kana.theme.ui.bg_m3 },
+        b = { bg = kana.theme.ui.bg_gutter, fg = kana.theme.syn.fun },
+        c = { bg = kana.theme.ui.bg_gutter, fg = kana.theme.ui.fg },
+        x = { bg = kana.theme.ui.bg_gutter, fg = kana.theme.syn.fun },
+    },
+    insert = {
+        a = { bg = kana.theme.diag.ok, fg = kana.theme.ui.bg },
+        b = { bg = kana.theme.ui.bg_gutter, fg = kana.theme.diag.ok },
+        x = { bg = kana.theme.ui.bg_gutter, fg = kana.theme.diag.ok },
+    },
+    command = {
+        a = { bg = kana.theme.syn.operator, fg = kana.theme.ui.bg },
+        b = { bg = kana.theme.ui.bg_gutter, fg = kana.theme.syn.operator },
+        x = { bg = kana.theme.ui.bg_gutter, fg = kana.theme.syn.operator },
+    },
+    visual = {
+        a = { bg = kana.theme.syn.keyword, fg = kana.theme.ui.bg },
+        b = { bg = kana.theme.ui.bg_gutter, fg = kana.theme.syn.keyword },
+        x = { bg = kana.theme.ui.bg_gutter, fg = kana.theme.syn.keyword },
+    },
+    replace = {
+        a = { bg = kana.theme.syn.constant, fg = kana.theme.ui.bg },
+        b = { bg = kana.theme.ui.bg_gutter, fg = kana.theme.syn.constant },
+        x = { bg = kana.theme.ui.bg_gutter, fg = kana.theme.syn.constant },
+    },
+    inactive = {
+        a = { bg = kana.theme.ui.bg_gutter, fg = kana.theme.ui.fg_dim },
+        b = { bg = kana.theme.ui.bg_gutter, fg = kana.theme.ui.fg_dim, gui = "bold" },
+        c = { bg = kana.theme.ui.bg_gutter, fg = kana.theme.ui.fg_dim },
+        x = { bg = kana.theme.ui.bg_gutter, fg = kana.theme.ui.fg_dim, gui = "bold" },
+    }
+}
 
 local autoformat_component = function()
-    return "󰳼"
-end
+    if vim.g.disable_autoformat or vim.b.disable_autoformat then
+        return "OFF"
+    end
 
-local function kanagawa()
-    return {
-        normal = {
-            a = { bg = palette.dragonBlue2, fg = palette.dragonBlack3 },
-            b = { bg = colors.lightgray, fg = colors.white },
-            c = { bg = colors.darkgray, fg = colors.gray }
-        },
-        insert = {
-            a = { bg = colors.blue, fg = colors.black, gui = 'bold' },
-            b = { bg = colors.lightgray, fg = colors.white },
-            c = { bg = colors.lightgray, fg = colors.white }
-        },
-        visual = {
-            a = { bg = colors.yellow, fg = colors.black, gui = 'bold' },
-            b = { bg = colors.lightgray, fg = colors.white },
-            c = { bg = colors.inactivegray, fg = colors.black }
-        },
-        replace = {
-            a = { bg = colors.red, fg = colors.black, gui = 'bold' },
-            b = { bg = colors.lightgray, fg = colors.white },
-            c = { bg = colors.black, fg = colors.white }
-        },
-        command = {
-            a = { bg = colors.green, fg = colors.black, gui = 'bold' },
-            b = { bg = colors.lightgray, fg = colors.white },
-            c = { bg = colors.inactivegray, fg = colors.black }
-        },
-        inactive = {
-            a = { bg = colors.darkgray, fg = colors.gray, gui = 'bold' },
-            b = { bg = colors.darkgray, fg = colors.gray },
-            c = { bg = colors.darkgray, fg = colors.gray }
-        }
-    }
+    return "ON"
 end
 
 require("lualine").setup({
     options = {
         section_separators = "",
         component_separators = "",
-        theme = "codedark", -- todo: make it match colorscheme
+        theme = lualine_kanagawa_theme
     },
     sections = {
         lualine_a = {
@@ -62,10 +66,9 @@ require("lualine").setup({
         lualine_c = {
             {
                 "filename",
-                newfile_status = true,
                 path = 1,
                 symbols = {
-                    modified = "●",
+                    modified = "● ",
                     readonly = "󰌾",
                 },
             },
@@ -82,6 +85,19 @@ require("lualine").setup({
                 sections = { "error", "warn" },
                 update_in_insert = true,
                 always_visible = true,
+            },
+        },
+        lualine_y = {
+            {
+                autoformat_component,
+                icon = "󰳼",
+                color = function(_)
+                    if vim.g.disable_autoformat or vim.b.disable_autoformat then
+                        return { fg = kana.palette.dragonRed }
+                    end
+
+                    return { fg = kana.palette.dragonGreen2 }
+                end
             },
             {
                 "filetype",
@@ -105,27 +121,9 @@ require("lualine").setup({
                 end,
             },
         },
-        lualine_y = {
-            {
-                autoformat_component,
-                color = function(_)
-                    if vim.g.disable_autoformat or vim.b.disable_autoformat then
-                        return "DiagnosticError"
-                    end
-
-                    return "DiagnosticOk"
-                end,
-            },
-        },
         lualine_z = {
             {
-                "location",
-                fmt = function(str)
-                    local vals = string.gmatch(str, "%d+")
-                    local ln = tostring(vals())
-                    local col = tostring(vals())
-                    return "Ln: " .. ln .. " Col: " .. col
-                end,
+                "location"
             },
         },
     },
