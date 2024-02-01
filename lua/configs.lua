@@ -21,6 +21,7 @@ vim.opt.swapfile       = false
 vim.opt.backup         = false
 vim.opt.undodir        = os.getenv("HOME") .. "/.nvim/undodir"
 vim.opt.undofile       = true
+vim.opt.mouse          = ""
 
 vim.diagnostic.config({
     signs = {

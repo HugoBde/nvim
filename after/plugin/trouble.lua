@@ -1,7 +1,5 @@
 local trouble = require("trouble")
 
--- Open Diagnostic window / Trouble.nvim
-
 require("which-key").register({
     o = {
         name = "Trouble",
