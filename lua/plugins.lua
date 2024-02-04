@@ -6,20 +6,15 @@ return {
 
         dependencies = {
             "nvim-lua/plenary.nvim",
-            {
-                "nvim-telescope/telescope-fzf-native.nvim",
-                build =
-                "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build"
-            }
         }
     },
-
-    -- Nvim Tree Sitter
+	
+    -- Nvim UFO (code folding)
     {
-        "nvim-treesitter/nvim-treesitter",
-        build = ":TSUpdate"
+        "kevinhwang91/nvim-ufo",
+        dependencies = { { "kevinhwang91/promise-async" } }
     },
-
+	
     -- colorscheme
     {
         "rebelot/kanagawa.nvim",
@@ -68,7 +63,6 @@ return {
 
     {
         'L3MON4D3/LuaSnip',
-        build = "make install_jsregexp",
         dependencies = {
             { "saadparwaiz1/cmp_luasnip" },
             { "rafamadriz/friendly-snippets" }
@@ -105,11 +99,6 @@ return {
         'windwp/nvim-autopairs',
         event = "InsertEnter",
         opts = {} -- this is equalent to setup({}) function
-    },
-
-    -- discord presence
-    {
-        "andweeb/presence.nvim"
     },
 
     -- trouble.nvim
@@ -226,14 +215,4 @@ return {
     {
         "mhartington/formatter.nvim",
     },
-
-    -- nvim ts autotags
-    {
-        "windwp/nvim-ts-autotag"
-    },
-
-    -- nvim ts autotags
-    {
-        "windwp/nvim-ts-autotag"
-    }
 }

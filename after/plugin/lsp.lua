@@ -109,6 +109,10 @@ require('mason-lspconfig').setup({
 local lsp_config = require("lspconfig")
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
+-- for UFO
+capabilities.dynamicRegistration = false
+capabilities.lineFoldingOnly = true
+
 for lsp, opts in pairs(lsps) do
     opts.capabilities = capabilities
     lsp_config[lsp].setup(opts)
