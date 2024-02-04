@@ -29,8 +29,10 @@ require("which-key").register({
         name = "Telescope",
         f = { builtin.find_files, "search in files" },
         F = { builtin.git_files, "search in Git files" },
-        s = { builtin.live_grep, "live grep search" },
+        g = { builtin.live_grep, "live grep search" },
         d = { builtin.grep_string, "grep search word under cursor" },
         a = { builtin.buffers, "search in open buffers" },
+        s = { builtin.lsp_document_symbols, "search in document symbols" },
+        S = { builtin.lsp_workspace_symbols, "search in workspace symbols" }
     },
 }, { prefix = "<leader>" })
