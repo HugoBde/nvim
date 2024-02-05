@@ -235,5 +235,10 @@ return {
                 -- Configuration here, or leave empty to use defaults
             })
         end
+    },
+
+    -- cellular automaton
+    {
+        "eandrju/cellular-automaton.nvim"
     }
 }
