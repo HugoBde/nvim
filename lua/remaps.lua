@@ -21,6 +21,9 @@ vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "go to up window" })
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
+-- Concatenate the line below to the current line
+vim.keymap.set("n", "J", "mzJ`z")
+
 -- Keep search terms in middle of screen
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
@@ -44,3 +47,6 @@ vim.keymap.set("n", "<leader>=", "<cmd>wincmd =<cr>", { desc = "resize split" })
 
 -- Todo: maybe add more complex logic to open man pages when filetype is c/cpp, or open vim help pages instead
 vim.keymap.set("n", "<leader>m", ":vert Man <C-r><C-w><CR>", { desc = "open man page of word under cursor" })
+
+-- Type a shell command
+vim.keymap.set("n", "<leader>!", ":!", { desc = "shell command" })

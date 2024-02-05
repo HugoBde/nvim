@@ -1,5 +1,6 @@
 return {
 
+    -- telescope my beloved
     {
         "nvim-telescope/telescope.nvim",
         tag = "0.1.5",
@@ -106,14 +107,14 @@ return {
         "folke/trouble.nvim",
         opts = {
             icons = false,
-            fold_open = "v",
-            fold_closed = ">",
+            fold_open = "",
+            fold_closed = "",
             indent_lines = false,
             signs = {
-                error = "X",
-                warning = "!",
-                hint = "?",
-                information = "*"
+                error       = "󰀨",
+                warning     = "󰀦",
+                hint        = "󰌵",
+                information = ""
             },
             multiline = false,
             use_diagnostic_signs = false,
@@ -135,13 +136,12 @@ return {
             marks = false,
             registers = false,
             icons = {
-                breadcrumb = ">>",
-                separator = ">",
-                group = ""
+                breadcrumb = "󰄾",
+                separator = "",
+                group = "󰆧 "
             },
             window = {
-                border = "single",
-                winblend = 50,
+                border = "rounded",
             }
         }
     },
@@ -150,11 +150,6 @@ return {
     {
         "lukas-reineke/indent-blankline.nvim",
         main = "ibl",
-        opts = {
-            scope = {
-                enabled = false
-            }
-        },
         config = function()
             require("ibl").setup({
                 indent = {
@@ -164,14 +159,6 @@ return {
                     enabled = false
                 }
             })
-        end
-    },
-
-    -- references highlight
-    {
-        'tzachar/local-highlight.nvim',
-        config = function()
-            require('local-highlight').setup()
         end
     },
 
@@ -200,9 +187,10 @@ return {
         },
         opts = {
             symbols = {
-                separator = ">"
+                modified = "●",
+                ellipsis = "…",
+                separator = ""
             },
-            kinds = false
         },
     },
 
@@ -211,8 +199,30 @@ return {
         "nvim-lualine/lualine.nvim"
     },
 
-    -- null ls to get formatting
+    -- conform to get formatting
+    -- {
+    --     'stevearc/conform.nvim',
+    -- },
+
+    -- nvim ts autotags
+    -- {
+    --     "windwp/nvim-ts-autotag"
+    -- },
+
+    -- vim apm
     {
-        "mhartington/formatter.nvim",
+        "ThePrimeagen/vim-apm",
     },
+
+    -- surround
+    {
+        "kylechui/nvim-surround",
+        version = "*", -- Use for stability; omit to use `main` branch for the latest features
+        event = "VeryLazy",
+        config = function()
+            require("nvim-surround").setup({
+                -- Configuration here, or leave empty to use defaults
+            })
+        end
+    }
 }

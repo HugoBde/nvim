@@ -21,9 +21,18 @@ vim.opt.swapfile       = false
 vim.opt.backup         = false
 vim.opt.undodir        = "C:\\Users\\Hugo\\Documents\\nvim"
 vim.opt.undofile       = true
+vim.opt.mouse          = ""
+vim.opt.guifont        = "IosevkaTerm NFM:h12"
 
 vim.diagnostic.config({
-    signs = false,
+    signs = {
+        text = {
+            [vim.diagnostic.severity.ERROR] = "󰀨",
+            [vim.diagnostic.severity.WARN]  = "󰀦",
+            [vim.diagnostic.severity.HINT]  = "󰌵",
+            [vim.diagnostic.severity.INFO]  = ""
+        }
+    },
     severity_sort = true,
 })
 

@@ -61,7 +61,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
             {
                 buffer = bufnr
             })
-
         -- If editing a c or header file for work, don't setup autoformattng
         local file_extension = utils.get_file_extension(event.file)
 
@@ -102,9 +101,9 @@ local lsps = {
 }
 
 require('mason').setup()
-require('mason-lspconfig').setup({
-    ensure_installed = utils.get_keys(lsps)
-})
+-- require('mason-lspconfig').setup({
+--     ensure_installed = utils.get_keys(lsps)
+-- })
 
 local lsp_config = require("lspconfig")
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
