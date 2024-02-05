@@ -17,6 +17,12 @@ conform.setup({
         ["*"] = { "typos" },
     },
 
+    formatters = {
+        ocamlformat = {
+            prepend_args = { "--enable-outside-detected-project" }
+        }
+    },
+
     format_on_save = function(bufnr)
         if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
             return
