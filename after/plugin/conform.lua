@@ -18,9 +18,9 @@ conform.setup({
     },
 
     formatters = {
-        ocamlformat = {
-            prepend_args = { "--enable-outside-detected-project" }
-        }
+        -- ocamlformat = {
+        --     prepend_args = { "--enable-outside-detected-project" }
+        -- }
     },
 
     format_on_save = function(bufnr)
@@ -30,6 +30,7 @@ conform.setup({
         return {
             timeout_ms = 500,
             lsp_fallback = true,
+            quiet = true
         }
     end,
 })

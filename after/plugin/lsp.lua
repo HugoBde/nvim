@@ -97,7 +97,10 @@ local lsps = {
     taplo = {},
     tailwindcss = {},
     tsserver = {},
-    yamlls = {}
+    yamlls = {},
+    zls = {
+
+    }
 }
 
 require('mason').setup()
