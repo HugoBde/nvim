@@ -33,6 +33,7 @@ require("which-key").register({
         d = { builtin.grep_string, "grep search word under cursor" },
         a = { builtin.buffers, "search in open buffers" },
         s = { builtin.lsp_document_symbols, "search in document symbols" },
-        S = { builtin.lsp_workspace_symbols, "search in workspace symbols" }
+        S = { builtin.lsp_workspace_symbols, "search in workspace symbols" },
+        p = { builtin.builtin, "pick a builtin picker" }
     },
 }, { prefix = "<leader>" })

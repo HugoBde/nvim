@@ -5,7 +5,6 @@ require("nvim-treesitter.configs").setup {
         "cmake",
         "comment",
         "cpp",
-        "c_sharp",
         "css",
         "diff",
         "dockerfile",
@@ -15,7 +14,6 @@ require("nvim-treesitter.configs").setup {
         "html",
         "javascript",
         "json",
-        "llvm",
         "lua",
         "make",
         "markdown",
@@ -34,7 +32,7 @@ require("nvim-treesitter.configs").setup {
 
     sync_install = false,
 
-    auto_install = true,
+    auto_install = false,
 
     highlight = {
         enable = true,
