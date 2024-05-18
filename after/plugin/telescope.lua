@@ -34,6 +34,7 @@ require("which-key").register({
         a = { builtin.buffers, "search in open buffers" },
         s = { builtin.lsp_document_symbols, "search in document symbols" },
         S = { builtin.lsp_workspace_symbols, "search in workspace symbols" },
+        r = { builtin.resume, "resume last search" },
         p = { builtin.builtin, "pick a builtin picker" }
     },
 }, { prefix = "<leader>" })

@@ -3,7 +3,6 @@ vim.opt.relativenumber = true
 vim.opt.termguicolors  = true
 -- always make real tabs 8 spaces so they are easy to spot
 -- soft tabs are set on a file type basis further below
-vim.opt.tabstop        = 8
 vim.opt.expandtab      = true
 vim.opt.smarttab       = true
 vim.opt.scrolloff      = 8
@@ -22,6 +21,8 @@ vim.opt.backup         = false
 vim.opt.undodir        = os.getenv("HOME") .. "/.nvim/undodir"
 vim.opt.undofile       = true
 vim.opt.mouse          = ""
+vim.opt.list           = true
+vim.opt.listchars      = "tab:→ ,trail:·"
 
 vim.diagnostic.config({
     signs = {
@@ -54,17 +55,19 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
 vim.api.nvim_create_autocmd({ "FileType" }, {
     callback = function(event)
         local config_tab_size = {
+            elixir = 2,
             javascriptreact = 2,
             typescriptreact = 2,
             javascript = 2,
             typescript = 2,
             html = 2,
-            go = 8
+            gleam = 2,
         }
         local default_tab_size = 4
         local tab_size = config_tab_size[event.match] or default_tab_size
 
         vim.o.shiftwidth = tab_size
         vim.o.softtabstop = tab_size
+        vim.o.tabstop = tab_size
     end
 })

@@ -63,7 +63,6 @@ return {
             { 'hrsh7th/cmp-nvim-lsp-signature-help' },
             { 'hrsh7th/cmp-path' },
             { 'hrsh7th/cmp-buffer' },
-            { 'hrsh7th/cmp-nvim-lua' },
         }
     },
 
@@ -240,5 +239,25 @@ return {
     -- cellular automaton
     {
         "eandrju/cellular-automaton.nvim"
-    }
+    },
+
+    -- transparency
+    {
+        "xiyaowong/transparent.nvim"
+    },
+
+    -- Nvim plugin dev
+    {
+        "folke/neodev.nvim",
+        opts = {}
+    },
+
+    -- Subversigns
+    -- {
+    --     "HugoBde/subversigns.nvim",
+    --     dev = true,
+    --     config = function()
+    --         require("subversigns").setup()
+    --     end
+    -- }
 }

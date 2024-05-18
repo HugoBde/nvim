@@ -69,6 +69,9 @@ local lsps = {
     cssls = {},
     dockerls = {},
     docker_compose_language_service = {},
+    elixirls = {
+        cmd = { "/home/bde/Programs/elixir-ls/language_server.sh" }
+    },
     eslint = {
         --     on_attach = function(_, bufnr)
         --         vim.api.nvim_create_autocmd("BufWritePre", {
@@ -77,8 +80,12 @@ local lsps = {
         --         })
         --     end
     },
+    gleam = {},
     gopls = {},
     html = {},
+    htmx = {
+        filetypes = { "html", "templ" },
+    },
     jsonls = {},
     lua_ls = {},
     marksman = {},
@@ -95,18 +102,36 @@ local lsps = {
         }
     },
     taplo = {},
-    tailwindcss = {},
+    templ = {},
+    typos_lsp = {
+        init_options = {
+            diagnosticSeverity = "warn"
+        }
+    },
+    tailwindcss = {
+        filetypes = {
+            "html",
+            "templ",
+            "astro",
+            "javascript",
+            "typescript",
+            "javascriptreact",
+            "typescriptreact",
+            "react"
+        },
+        init_options = { userLanguages = { templ = "html" } },
+    },
     tsserver = {},
     yamlls = {},
-    zls = {
-
-    }
 }
 
 require('mason').setup()
 -- require('mason-lspconfig').setup({
 --     ensure_installed = utils.get_keys(lsps)
 -- })
+
+-- setup neodev before lspconfig
+require("neodev").setup({})
 
 local lsp_config = require("lspconfig")
 local capabilities = require('cmp_nvim_lsp').default_capabilities()

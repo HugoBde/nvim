@@ -9,8 +9,8 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 
 require("lazy").setup("plugins", {
-    checker = {
-        enabled = true
+    dev = {
+        path = "~/Documents/Programming"
     }
 })
 require("configs")

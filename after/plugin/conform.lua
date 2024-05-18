@@ -2,12 +2,12 @@ local conform = require("conform")
 
 conform.setup({
     formatters_by_ft = {
-        python = { "autopep8" },
         c = { "clang_format" },
         cpp = { "clang_format" },
         go = { "gofmt" },
         markdown = { "mdformat" },
         ocaml = { "ocamlformat" },
+        python = { "black" },
         rust = { "rustfmt" },
         toml = { "taplo" },
         templ = { "templ" },
