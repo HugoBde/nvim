@@ -47,10 +47,8 @@ end, {
     bang = true,
 })
 
-require("which-key").register({
-    f = {
-        name = "Conform",
-        g = { ":AutoFormatToggle<CR>", "Toggle autoformat globally" },
-        b = { ":AutoFormatToggle!<CR>", "Toggle autoformat for buffer" },
-    },
-}, { prefix = "<leader>" })
+require("which-key").add({
+    { "<leader>f",  group = "Conform" },
+    { "<leader>fb", ":AutoFormatToggle!<CR>", desc = "Toggle autoformat for buffer" },
+    { "<leader>fg", ":AutoFormatToggle<CR>",  desc = "Toggle autoformat globally" },
+})

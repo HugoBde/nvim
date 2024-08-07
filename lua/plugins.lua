@@ -145,7 +145,7 @@ return {
                 separator = "",
                 group = "󰆧 "
             },
-            window = {
+            win = {
                 border = "rounded",
             }
         }
@@ -203,7 +203,8 @@ return {
 
     -- bringing back ufo to fold code
     {
-        "/kevinhwang91/nvim-ufo",
+        "kevinhwang91/nvim-ufo",
+        tag = "v1.4.0",
         dependencies = {
             "kevinhwang91/promise-async"
         }
@@ -250,6 +251,12 @@ return {
     {
         "folke/neodev.nvim",
         opts = {}
+    },
+
+    -- AI assistant
+    {
+        "yacineMTB/dingllm.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" }
     },
 
     -- Subversigns
