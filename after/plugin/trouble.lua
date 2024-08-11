@@ -2,6 +2,6 @@ local trouble = require("trouble")
 
 require("which-key").add({
     { "<leader>o",  group = "Trouble" },
-    { "<leader>oi", trouble.open,     desc = "open diagnostic window" },
-    { "<leader>oo", trouble.toggle,   desc = "toggle diagnostic window" },
-    { "<leader>op", trouble.close,    desc = "close diagnostic window" } })
+    { "<leader>oi", "<cmd>Trouble diagnostics open<cr>",   desc = "open diagnostic window" },
+    { "<leader>oo", "<cmd>Trouble diagnostics toggle<cr>", desc = "toggle diagnostic window" },
+    { "<leader>op", "<cmd>Trouble diagnostics close<cr>",  desc = "close diagnostic window" } })
