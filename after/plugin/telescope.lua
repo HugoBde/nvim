@@ -29,18 +29,14 @@ telescope.setup({
 
 telescope.load_extension("fzf")
 
-require("which-key").register({
-    t = {
-        name = "Telescope",
-        f = { builtin.find_files, "search in files" },
-        F = { builtin.git_files, "search in Git files" },
-        g = { builtin.live_grep, "live grep search" },
-        d = { builtin.grep_string, "grep search word under cursor" },
-        a = { builtin.buffers, "search in open buffers" },
-        s = { builtin.lsp_document_symbols, "search in document symbols" },
-        S = { builtin.lsp_workspace_symbols, "search in workspace symbols" },
-        r = { builtin.resume, "resume last search" },
-        c = { builtin.colorscheme, "browse colorschemes" },
-        p = { builtin.builtin, "pick a builtin picker" }
-    },
-}, { prefix = "<leader>" })
+require("which-key").add({
+    { "<leader>t",  group = "Telescope" },
+    { "<leader>tf", builtin.find_files,            desc = "search in files" },
+    { "<leader>tF", builtin.git_files,             desc = "search in Git files" },
+    { "<leader>tg", builtin.live_grep,             desc = "live grep search" },
+    { "<leader>td", builtin.grep_string,           desc = "grep search word under cursor" },
+    { "<leader>ta", builtin.buffers,               desc = "search in open buffers" },
+    { "<leader>ts", builtin.lsp_document_symbols,  desc = "search in document symbols" },
+    { "<leader>tS", builtin.lsp_workspace_symbols, desc = "search in workspace symbols" },
+    { "<leader>tr", builtin.resume,                desc = "resume last search" },
+    { "<leader>tp", builtin.builtin,               desc = "pick a builtin picker" } })

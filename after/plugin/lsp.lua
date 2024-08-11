@@ -28,39 +28,46 @@ vim.api.nvim_create_autocmd("LspAttach", {
         vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end,
             { buffer = bufnr, remap = false, desc = "signature help" })
 
-        require("which-key").register({
-                ["<leader>"] = {
-                    v = {
-                        name = "lsp",
-                        w = { vim.lsp.buf.workspace_symbol, "workspace symbols" },
-                        d = { vim.diagnostic.open_float, "open diagnostic float" },
-                        c = { vim.lsp.buf.code_action, "show code actions" },
-                        r = { vim.lsp.buf.references, "show references" },
-                        n = { vim.lsp.buf.rename, "rename symbol" }
-                    }
-                },
-                g = {
-                    d = { vim.lsp.buf.definition, "go to definition" },
-                    D = { function()
-                        vim.cmd("vsplit")
-                        vim.lsp.buf.definition()
-                    end, "go to definition in vsplit" },
-                    f = { vim.lsp.buf.declaration, "go to declaration" },
-                    F = { function()
-                        vim.cmd("vsplit")
-                        vim.lsp.buf.declaration()
-                    end, "go to declaration in vsplit" },
-                    t = { vim.lsp.buf.type_definition, "go to type definition" },
-                    T = { function()
-                        vim.cmd("vsplit")
-                        vim.lsp.buf.type_definition()
-                    end, "go to type definition in vsplit" }
-                },
-                K = { vim.lsp.buf.hover, "hover" },
-            },
+        -- rewrite the following to use the updated which-key.nvim spec
+        require("which-key").add({
             {
-                buffer = bufnr
-            })
+                buffer = bufnr,
+                { "<leader>v",  group = "lsp" },
+                { "<leader>vc", vim.lsp.buf.code_action,      desc = "show code actions" },
+                { "<leader>vd", vim.diagnostic.open_float,    desc = "open_diagnostic float" },
+                { "<leader>vn", vim.lsp.buf.rename,           desc = "rename symbol" },
+                { "<leader>vr", vim.lsp.buf.references,       desc = "show references" },
+                { "<leader>vw", vim.lsp.buf.workspace_symbol, desc = "workspace symbols" },
+                { "K",          vim.lsp.buf.hover,            desc = "hover" },
+                { "gd",         vim.lsp.buf.definition,       desc = "go to definition" },
+                {
+                    "gD",
+                    function()
+                        vim.cmd.vsplit()
+                        vim.lsp.buf.definition()
+                    end,
+                    desc = "go to definition in vsplit"
+                },
+                { "gf", vim.lsp.buf.declaration,     desc = "go to declaration" },
+                {
+                    "gF",
+                    function()
+                        vim.cmd.vsplit()
+                        vim.lsp.buf.declaration()
+                    end,
+                    desc = "go to declaration in vsplit"
+                },
+                { "gt", vim.lsp.buf.type_definition, desc = "go to type definition" },
+                {
+                    "gT",
+                    function()
+                        vim.cmd.vsplit()
+                        vim.lsp.buf.type_definition()
+                    end,
+                    desc = "go to type definition in vsplit"
+                },
+            }
+        })
     end
 })
 
