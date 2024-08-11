@@ -103,11 +103,11 @@ local lsps = {
     },
     taplo = {},
     templ = {},
-    typos_lsp = {
-        init_options = {
-            diagnosticSeverity = "warn"
-        }
-    },
+    -- typos_lsp = {
+    --     init_options = {
+    --         diagnosticSeverity = "warn"
+    --     }
+    -- },
     tailwindcss = {
         filetypes = {
             "html",

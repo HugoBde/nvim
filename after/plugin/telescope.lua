@@ -19,6 +19,11 @@ telescope.setup({
                 ["<C-o>"]    = actions.file_vsplit
             }
         }
+    },
+    pickers = {
+        colorscheme = {
+            enable_preview = true
+        }
     }
 })
 
@@ -35,6 +40,7 @@ require("which-key").register({
         s = { builtin.lsp_document_symbols, "search in document symbols" },
         S = { builtin.lsp_workspace_symbols, "search in workspace symbols" },
         r = { builtin.resume, "resume last search" },
+        c = { builtin.colorscheme, "browse colorschemes" },
         p = { builtin.builtin, "pick a builtin picker" }
     },
 }, { prefix = "<leader>" })

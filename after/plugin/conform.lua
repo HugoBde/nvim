@@ -13,8 +13,6 @@ conform.setup({
         templ = { "templ" },
         yaml = { "yamlfmt" },
         zig = { "zigfmt" },
-
-        ["*"] = { "typos" },
     },
 
     formatters = {

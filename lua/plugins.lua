@@ -37,8 +37,11 @@ return {
                     light = "lotus"
                 }
             })
-            vim.cmd("colorscheme kanagawa")
+            vim.cmd("colorscheme kanagawa ")
         end
+    },
+    {
+        "EdenEast/nightfox.nvim"
     },
 
     -- LSP stuff
@@ -111,9 +114,13 @@ return {
     {
         "folke/trouble.nvim",
         opts = {
-            icons = false,
-            fold_open = "",
-            fold_closed = "",
+            icons = {
+                fold_open = "",
+                fold_closed = "",
+            },
+            keys = {
+                ["<esc>"] = "close"
+            },
             indent_lines = false,
             signs = {
                 error       = "󰀨",
@@ -121,11 +128,14 @@ return {
                 hint        = "󰌵",
                 information = ""
             },
-            multiline = false,
+            multiline = true,
             use_diagnostic_signs = false,
             auto_open = false,
             auto_close = true,
-            auto_fold = true
+            auto_fold = true,
+            auto_jump = false,
+            focus = true,
+            open_no_results = true,
         },
     },
 

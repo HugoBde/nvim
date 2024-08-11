@@ -3,8 +3,8 @@ local trouble = require("trouble")
 require("which-key").register({
     o = {
         name = "Trouble",
-        o = { trouble.toggle, "toggle diagnostic window" },
-        i = { trouble.open, "open diagnostic window" },
-        p = { trouble.close, "close diagnostic window" },
+        o = { function() trouble.toggle("diagnostics") end, "open diagnostic window" },
+        r = { function() trouble.toggle("lsp_references") end, "open lsp references" },
+        p = { trouble.close, "close trouble window" },
     },
 }, { prefix = "<leader>" })

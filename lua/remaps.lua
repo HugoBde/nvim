@@ -50,3 +50,8 @@ vim.keymap.set("n", "<leader>m", ":vert Man <C-r><C-w><CR>", { desc = "open man 
 
 -- Type a shell command
 vim.keymap.set("n", "<leader>!", ":!", { desc = "shell command" })
+
+--:nmap <F1> :echo<CR>
+-- :imap <F1> <C-o>:echo<CR>
+vim.keymap.set("n", "<F1>", ":echo<CR>")
+vim.keymap.set("i", "<F1>", "<C-o>:echo<CR>")
