@@ -128,7 +128,7 @@ local lsps = {
         },
         init_options = { userLanguages = { templ = "html" } },
     },
-    tsserver = {},
+    ts_ls = {},
     yamlls = {},
 }
 

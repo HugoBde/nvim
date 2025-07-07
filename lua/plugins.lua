@@ -214,7 +214,6 @@ return {
     -- bringing back ufo to fold code
     {
         "kevinhwang91/nvim-ufo",
-        tag = "v1.4.0",
         dependencies = {
             "kevinhwang91/promise-async"
         }
@@ -227,7 +226,12 @@ return {
 
     -- nvim ts autotags
     {
-        "windwp/nvim-ts-autotag"
+        "windwp/nvim-ts-autotag",
+        config = function()
+            require("nvim-ts-autotag").setup({
+                -- Configuration here, or leave empty to use defaults
+            })
+        end
     },
 
     -- vim apm
