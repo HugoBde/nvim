@@ -55,14 +55,21 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
 vim.api.nvim_create_autocmd({ "FileType" }, {
     callback = function(event)
         local config_tab_size = {
+            c = 2,
+            cpp = 2,
+            dart = 2,
             elixir = 2,
-            javascriptreact = 2,
-            typescriptreact = 2,
-            javascript = 2,
-            typescript = 2,
-            html = 2,
             gleam = 2,
+            haskell = 2,
+            html = 2,
+            javascript = 2,
+            javascriptreact = 2,
+            json = 2,
             ocaml = 2,
+            rust = 2,
+            typescript = 2,
+            typescriptreact = 2,
+            yaml = 2
         }
         local default_tab_size = 4
         local tab_size = config_tab_size[event.match] or default_tab_size

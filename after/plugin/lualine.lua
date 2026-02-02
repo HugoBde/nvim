@@ -47,7 +47,7 @@ require("lualine").setup({
     options = {
         section_separators = "",
         component_separators = "",
-        theme = "auto"
+        theme = require("lualine.themes.monochrome"),
     },
     sections = {
         lualine_a = {

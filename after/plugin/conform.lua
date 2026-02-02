@@ -12,10 +12,14 @@ conform.setup({
         toml = { "taplo" },
         templ = { "templ" },
         yaml = { "yamlfmt" },
-        zig = { "zigfmt" },
+        typescript = { "prettierd", "prettier", stop_after_first = true },
+        typescriptreact = { "prettierd", "prettier", stop_after_first = true }
     },
 
     formatters = {
+        rustfmt = {
+            prepend_args = { "+nightly" }
+        },
         -- ocamlformat = {
         --     prepend_args = { "--enable-outside-detected-project" }
         -- }
@@ -26,9 +30,9 @@ conform.setup({
             return
         end
         return {
-            timeout_ms = 500,
+            timeout_ms = 1500,
             lsp_fallback = true,
-            quiet = true
+            quiet = false
         }
     end,
 })

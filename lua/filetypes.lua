@@ -1,6 +1,7 @@
 vim.filetype.add({
     extension = {
         templ = "templ",
-        ob = "obey"
+        ob = "obey",
+        hip = "cuda"
     }
 })

@@ -3,7 +3,7 @@ return {
     -- telescope my beloved
     {
         "nvim-telescope/telescope.nvim",
-        tag = "0.1.5",
+        tag = "v0.2.0",
 
         dependencies = {
             "nvim-lua/plenary.nvim",
@@ -18,7 +18,7 @@ return {
     -- Nvim Tree Sitter
     {
         "nvim-treesitter/nvim-treesitter",
-        build = ":TSUpdate"
+        build = ":TSUpdate",
     },
 
     -- colorscheme
@@ -28,7 +28,6 @@ return {
         priority = 1000,
         config = function()
             require("kanagawa").setup({
-                dimInactive = true,
                 commentStyle = {
                     italic = false
                 },
@@ -37,11 +36,14 @@ return {
                     light = "lotus"
                 }
             })
-            vim.cmd("colorscheme kanagawa ")
+            vim.cmd("colorscheme kanagawa")
         end
     },
     {
-        "EdenEast/nightfox.nvim"
+        "EdenEast/nightfox.nvim",
+        -- config = function()
+        --     vim.cmd("colorscheme carbonfox")
+        -- end
     },
 
     -- LSP stuff
@@ -59,24 +61,55 @@ return {
     },
 
     -- Autocompletion
+    -- {
+    --     'hrsh7th/nvim-cmp',
+    --     dependencies = {
+    --         { 'hrsh7th/cmp-nvim-lsp' },
+    --         { 'hrsh7th/cmp-nvim-lsp-signature-help' },
+    --         { 'hrsh7th/cmp-path' },
+    --         { 'hrsh7th/cmp-buffer' },
+    --     }
+    -- },
     {
-        'hrsh7th/nvim-cmp',
+        "saghen/blink.cmp",
         dependencies = {
-            { 'hrsh7th/cmp-nvim-lsp' },
-            { 'hrsh7th/cmp-nvim-lsp-signature-help' },
-            { 'hrsh7th/cmp-path' },
-            { 'hrsh7th/cmp-buffer' },
+            "rafamadriz/friendly-snippets"
+        },
+        version = "1.*",
+        opts = {
+            keymap = {
+                preset = "enter",
+                ["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
+                ["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
+                ["<C-h>"] = { "show_signature", "hide_signature", "fallback" },
+            },
+            completion = {
+                list = {
+                    selection = {
+                        preselect = false,
+                        auto_insert = true
+                    }
+                },
+                ghost_text = {
+                    enabled = true,
+                },
+                documentation = {
+                    auto_show = true,
+                    auto_show_delay_ms = 500
+                },
+                menu = {
+                    draw = {
+                        columns = {
+                            { "label", "label_description", gap = 1 },
+                            { "kind" }
+                        }
+                    }
+                }
+            },
+            signature = { enabled = true }
         }
     },
 
-    {
-        'L3MON4D3/LuaSnip',
-        build = "make install_jsregexp",
-        dependencies = {
-            { "saadparwaiz1/cmp_luasnip" },
-            { "rafamadriz/friendly-snippets" }
-        }
-    },
 
     -- gitsigns
     {
@@ -166,11 +199,17 @@ return {
         "lukas-reineke/indent-blankline.nvim",
         main = "ibl",
         config = function()
-            require("ibl").setup({
-                scope = {
-                    enabled = false
-                }
-            })
+            require("ibl").setup(
+            ---@module "ibl"
+            ---@type ibl.config
+                {
+                    indent = {
+                        char = "│"
+                    },
+                    scope = {
+                        enabled = false
+                    }
+                })
         end
     },
 
@@ -214,7 +253,6 @@ return {
     -- bringing back ufo to fold code
     {
         "kevinhwang91/nvim-ufo",
-        tag = "v1.4.0",
         dependencies = {
             "kevinhwang91/promise-async"
         }
@@ -227,12 +265,12 @@ return {
 
     -- nvim ts autotags
     {
-        "windwp/nvim-ts-autotag"
-    },
-
-    -- vim apm
-    {
-        "ThePrimeagen/vim-apm",
+        "windwp/nvim-ts-autotag",
+        config = function()
+            require("nvim-ts-autotag").setup({
+                -- Configuration here, or leave empty to use defaults
+            })
+        end
     },
 
     -- surround
@@ -247,34 +285,36 @@ return {
         end
     },
 
-    -- cellular automaton
-    {
-        "eandrju/cellular-automaton.nvim"
-    },
-
-    -- transparency
-    {
-        "xiyaowong/transparent.nvim"
-    },
-
     -- Nvim plugin dev
     {
         "folke/neodev.nvim",
         opts = {}
     },
 
-    -- AI assistant
     {
-        "HugoBde/dingllm.nvim",
-        dependencies = { "nvim-lua/plenary.nvim" }
+        "kdheepak/monochrome.nvim",
+        -- config = function()
+        --     vim.g.monochrome_style = "subtle"
+        --     vim.cmd "colorscheme monochrome"
+        -- end
     },
 
-    -- Subversigns
-    -- {
-    --     "HugoBde/subversigns.nvim",
-    --     dev = true,
-    --     config = function()
-    --         require("subversigns").setup()
-    --     end
-    -- }
+    {
+        "rayliwell/tree-sitter-rstml",
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter"
+        }
+    },
+
+    {
+        "metalelf0/black-metal-theme-neovim",
+        lazy = false,
+        priority = 1000,
+        -- config = function()
+        --     require("black-metal").setup({
+        --         theme = "bathory"
+        --     })
+        --     require("black-metal").load()
+        -- end
+    },
 }

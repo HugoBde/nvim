@@ -1,16 +1,5 @@
 local utils = require("utils")
 
--- Make borders rounded for Hover and Signature Help
-vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
-    vim.lsp.handlers.hover,
-    { border = 'rounded' }
-)
-
-vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
-    vim.lsp.handlers.signature_help,
-    { border = 'rounded' }
-)
-
 vim.diagnostic.config({
     float = {
         border = "rounded"
@@ -72,8 +61,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 local lsps = {
-    clangd = {},
+    clangd = {
+        filetypes = { "c", "cpp", "cuda", "hpp" }
+    },
     cssls = {},
+    dartls = {},
     dockerls = {},
     docker_compose_language_service = {},
     elixirls = {
@@ -89,21 +81,38 @@ local lsps = {
     },
     gleam = {},
     gopls = {},
+    hls = {},
     html = {},
-    htmx = {
-        filetypes = { "html", "templ" },
-    },
+    -- htmx = {
+    --     filetypes = { "html", "templ" },
+    -- },
     jsonls = {},
     lua_ls = {},
     marksman = {},
     omnisharp = {},
     ocamllsp = {},
     pyright = {},
+    qmlls = {
+        cmd = {
+            "qmlls6", "-E"
+        }
+    },
     rust_analyzer = {
         settings = {
             ["rust_analyzer"] = {
                 check = {
                     command = "clippy"
+                },
+                cargo = {
+                    features = "all"
+                },
+                procMacro = {
+                    ignored = {
+                        -- leptos_macro = {
+                        -- "component"
+                        -- "server"
+                        -- }
+                    }
                 }
             }
         }
@@ -128,22 +137,20 @@ local lsps = {
         },
         init_options = { userLanguages = { templ = "html" } },
     },
-    tsserver = {},
+    ts_ls = {},
     yamlls = {},
+    zls = {}
 }
 
 require('mason').setup()
--- require('mason-lspconfig').setup({
---     ensure_installed = utils.get_keys(lsps)
--- })
 
 -- setup neodev before lspconfig
 require("neodev").setup({})
 
-local lsp_config = require("lspconfig")
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
+local blink = require("blink.cmp")
 
 for lsp, opts in pairs(lsps) do
-    opts.capabilities = capabilities
-    lsp_config[lsp].setup(opts)
+    opts.capabilities = blink.get_lsp_capabilities(opts.capabilities)
+    vim.lsp.config(lsp, opts)
+    vim.lsp.enable(lsp)
 end
